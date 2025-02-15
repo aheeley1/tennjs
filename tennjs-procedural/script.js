@@ -8,6 +8,9 @@ let height = canvas.height;
 const BALL_SIZE = 5; //tue const identintifier
 let ballPosition = {x:30,y:30};
 
+let xSpeed = 4;
+let ySpeed = 2;
+
 
 //refactoring- changing the code without changing the behavior
 //maintainability, readability
@@ -19,6 +22,21 @@ function draw() {
     ctx.fillRect(ballPosition.x,ballPosition.y,BALL_SIZE,BALL_SIZE);
 }
 
-draw();
+//each frame, ball will move xSpeed pixels to the right and ySpeed pixels down
+function update() {
+    ballPosition.x += xSpeed;
+    ballPosition.y += ySpeed;
+}
+
+function gameLoop() {
+    draw();
+    update();
+    
+    // call this function again after a timeout
+    // 30ms, calls function once more
+    setTimeout(gameLoop,30); 
+}
+
+gameLoop();
 
 
